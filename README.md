@@ -9,11 +9,9 @@
 | password             | string  | null: false |
 | last_name            | string  | null: false |
 | first_name           | string  | null: false |
-| last_name(カナ)       | string  | null: false |
-| first_name(カナ)      | string  | null: false |
-| data of birth(年)    | integer | null: false |
-| data of birth(月)    | integer | null: false |
-| data of birth(日)    | integer | null: false |  
+| last_name_kana       | string  | null: false |
+| first_name_kana      | string  | null: false |
+| date_of_birth        | date    | null: false | 
 
 ### Association
 
@@ -25,50 +23,46 @@
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| product name         | string     | null: false                    |
-| description of item  | text       | null: false                    |
-| category             | string     | null: false                    |
-| condition            | string     | null: false                    |
-| shipping cost        | string     | null: false                    |
-| shipping origin      | string     | null: false                    |
-| days to ship         | integer    | null: false                    |
+| product_name         | string     | null: false                    |
+| description_of_item  | text       | null: false                    |
+| category_id          | integer    | null: false                    |
+| condition_id         | integer    | null: false                    |
+| shipping_cost_id     | integer    | null: false                    |
+| shipping_origin_id   | integer    | null: false                    |
+| days_to_ship_id      | integer    | null: false                    |
 | price                | integer    | null: false                    |
-| sales commission     | integer    | null: false                    |
-| sales profit         | integer    | null: false                    |
-| user_id              | references | null: false, foreign_key: true |
-| buy_id               | references | null: false, foreign_key: true |
+| user                 | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :buys
+- belongs_to :user
+- has_one :order
 
 
 ## orders テーブル
 | Column               | Type       | Options                        |
 | -------------------- |----------- | ------------------------------ |
-| orders               | string     | null: false                    |
-| user_id              | references | null: false, foreign_key: true |
-| item_id              | references | null: false, foreign_key: true |
+| user                 | references | null: false, foreign_key: true | # 購入者
+| item                 | references | null: false, foreign_key: true | # 購入品
 
 ### Association
 
-- belongs_to :users
-- has_many :items
-- has_one :buy_user
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
 
-## buy_user テーブル
+## addresses テーブル
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| post code            | integer    | null: false                    |
+| post_code            | integer    | null: false                    |
 | prefecture           | string     | null: false                    |
 | municipalities       | string     | null: false                    |
 | banchi               | string     | null: false                    |
-| building name        | string     | null: false                    |
-| phone number         | integer    | null: false                    |
-| user_id              | references | null: false, foreign_key: true |
+| building_name        | string     | null: false                    |
+| phone_number         | integer    | null: false                    |
+| order                | references | null: false, foreign_key: true |
 
 ### Association
 
