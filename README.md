@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column               | Type    | Options     |
-| -------------------- | ------  | ----------- |
-| nickname             | string  | null: false |
-| email                | string  | null: false |
-| password             | string  | null: false |
-| last_name            | string  | null: false |
-| first_name           | string  | null: false |
-| last_name_kana       | string  | null: false |
-| first_name_kana      | string  | null: false |
-| date_of_birth        | date    | null: false | 
+| Column               | Type    | Options                   |
+| -------------------- | ------  | ------------------------- |
+| nickname             | string  | null: false               |
+| email                | string  | null: false, unique: true |
+| encrypted_password   | string  | null: false               |
+| last_name            | string  | null: false               |
+| first_name           | string  | null: false               |
+| last_name_kana       | string  | null: false               |
+| first_name_kana      | string  | null: false               |
+| date_of_birth        | date    | null: false               | 
 
 ### Association
 
@@ -56,14 +56,14 @@
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| post_code            | integer    | null: false                    |
-| prefecture           | string     | null: false                    |
+| post_code            | string     | null: false                    |
+| shipping_origin_id   | integer    | null: false                    |
 | municipalities       | string     | null: false                    |
 | banchi               | string     | null: false                    |
-| building_name        | string     | null: false                    |
-| phone_number         | integer    | null: false                    |
+| building_name        | string     |                                |
+| phone_number         | string     | null: false                    |
 | order                | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :orders
+- belongs_to :order
