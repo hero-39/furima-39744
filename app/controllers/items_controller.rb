@@ -1,14 +1,19 @@
 class ItemsController < ApplicationController
 
-  def index  # indexアクションを定義した
-    # @items = Item.all
+  def index  
+   # @items = Item.all
   end
 
-  def new  # indexアクションを定義した
-   # @items= Items.new
-  end
+ # def new  
+   # @item = Item.new
+ # end
 
-  def create  # createアクションを定義した
-  end
-
+ # def create
+  #  @itemes = Item.new(item_params)
+  #  if @item.save
+    # redirect_to root_path
+   # else
+    #  render :new, status: :unprocessable_entity
+  # end
+ # end
  end
