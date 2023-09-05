@@ -16,4 +16,10 @@ class ItemsController < ApplicationController
     #  render :new, status: :unprocessable_entity
   # end
  # end
+
+  private
+
+  def iteme_params
+    params.require(:item).permit(:content, :image).merge(user_id: current_user.id)
+  end
  end
