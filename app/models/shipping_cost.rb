@@ -5,8 +5,6 @@ class ShippingCost < ActiveHash::Base
     { id: 3, name: '送料込み(出品者負担)' }
   ]
   
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :item
-
-  validates :item_id, numericality: { other_than: 1 , message: "can't be blank" } 
+  include ActiveHash::Associations
+  has_many :items
 end

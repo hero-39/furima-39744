@@ -18,10 +18,8 @@ class ShippingOrigin < ActiveHash::Base
     {id: 45, name: '宮崎県'}, {id: 46, name: '鹿児島県'}, {id: 47, name: '沖縄県'}
   ]
 
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :user
-
-  validates :user_id, numericality: { other_than: 0 , message: "can't be blank" } 
+  include ActiveHash::Associations
+  has_many :items
 
 end  
 
