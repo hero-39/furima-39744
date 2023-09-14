@@ -19,6 +19,6 @@ class Item < ApplicationRecord
   validates :shipping_origin_id, numericality: { other_than: 0 , message: "can't be blank" } 
   validates :days_to_ship_id, numericality: { other_than: 0 , message: "can't be blank" } 
 
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,only_integer: true }
 
 end
