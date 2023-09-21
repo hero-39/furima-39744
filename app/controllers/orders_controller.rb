@@ -1,16 +1,16 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
   before_action :move_to_user, only: :index
+  before_action :set_item, only: [:index, :create, :move_to_user]
+
 
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
@@ -29,10 +29,13 @@ def order_params
 end
 
 def move_to_user
-  @item = Item.find(params[:item_id])
   if @item.order.present? || current_user.id == @item.user.id
   redirect_to root_path
   end
+end
+
+def set_item
+  @item = Item.find(params[:item_id])
 end
 
 def pay_item
