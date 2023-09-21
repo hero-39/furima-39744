@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, only: :index
+  before_action :move_to_user, only: :index
+
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -26,6 +28,13 @@ def order_params
   params.require(:order_address).permit(:post_code, :shipping_origin_id, :municipalities, :street_address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
 end
 
+def move_to_user
+  @item = Item.find(params[:item_id])
+  if @item.order.present? || current_user.id == @item.user.id
+  redirect_to root_path
+  end
+end
+
 def pay_item
   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
   Payjp::Charge.create(
@@ -34,5 +43,4 @@ def pay_item
     currency: 'jpy'                 # 通貨の種類（日本円）
   )
 end
-
 end
