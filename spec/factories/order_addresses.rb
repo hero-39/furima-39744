@@ -5,6 +5,9 @@ FactoryBot.define do
     shipping_origin_id { 1 }
     municipalities { '世田谷区' }
     street_address { '1-1' }
-    phone_number { '09012345678' }    
+    building_name { 'M' }
+    phone_number { '09012345678' }  
+    token {"tok_abcdefghijk00000000000000000"}
+  
   end
 end
