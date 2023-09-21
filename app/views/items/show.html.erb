@@ -19,7 +19,7 @@
         ¥ <%= @item.price %>
       </span>
       <span class="item-postage">
-        <%= @item.days_to_ship.name %>
+        <%= @item.shipping_cost.name %>
       </span>
     </div>
     <% if user_signed_in? %>
