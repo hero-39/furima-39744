@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :buys
+- has_many :orders
 
 
 ## items テーブル|
@@ -59,7 +59,7 @@
 | post_code            | string     | null: false                    |
 | shipping_origin_id   | integer    | null: false                    |
 | municipalities       | string     | null: false                    |
-| banchi               | string     | null: false                    |
+| street_address       | string     | null: false                    |
 | building_name        | string     |                                |
 | phone_number         | string     | null: false                    |
 | order                | references | null: false, foreign_key: true |
